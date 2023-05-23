@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  zmongodb:
+    image: mongo:5.0
+    env_file: "./server/.env"
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/apps/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-mongouser}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-changeme}
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME:-chartsAlgorutmics}
+    restart: always
+    logging:
+      driver: none
